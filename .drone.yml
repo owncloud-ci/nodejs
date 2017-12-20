@@ -1,0 +1,47 @@
+workspace:
+  base: /drone
+  path: src
+
+branches:
+  - master
+
+pipeline:
+  dryrun:
+    image: plugins/docker:17.05
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    repo: owncloudci/nodejs
+    label_schema:
+      - version=${DRONE_BRANCH}
+    dry_run: true
+    tags: [ 'latest' ]
+    when:
+      event: [ pull_request ]
+
+  docker:
+    image: plugins/docker:17.05
+    pull: true
+    secrets: [ docker_username, docker_password ]
+    repo: owncloudci/nodejs
+    label_schema:
+      - version=${DRONE_BRANCH}
+    tags: [ 'latest' ]
+    when:
+      event: [ push ]
+
+  microbadger:
+    image: plugins/webhook:1
+    pull: true
+    secrets:
+      - source: microbadger_token
+        target: plugin_urls
+    when:
+      event: [ push ]
+
+  slack:
+    image: plugins/slack:1
+    pull: true
+    secrets: [ slack_webhook ]
+    channel: drone
+    when:
+      status: [ success, failure ]
