@@ -44,4 +44,5 @@ pipeline:
     secrets: [ slack_webhook ]
     channel: drone
     when:
+      event: [ push, pull_request ]
       status: [ success, failure ]
