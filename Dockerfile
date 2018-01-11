@@ -12,11 +12,11 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 RUN apt-get update -y && \
   apt-get upgrade -y && \
-  apt-get install -y nodejs && \
+  apt-get install -y nodejs git-core && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN npm install -g yarn
+RUN npm install -g yarn npx
 
 COPY rootfs /
 WORKDIR /var/www/owncloud
