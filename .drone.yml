@@ -46,3 +46,17 @@ pipeline:
     when:
       event: [ push, pull_request ]
       status: [ success, failure ]
+
+  downstream:
+    image: plugins/downstream:1
+    pull: true
+    secrets: [ drone_token ]
+    server: https://drone.owncloud.com
+    last_successful: true
+    repositories:
+      - owncloud-ci/chromium@master
+    when:
+      local: false
+      event: [ push ]
+      status: [ success ]
+
