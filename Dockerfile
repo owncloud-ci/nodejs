@@ -18,5 +18,8 @@ RUN apt-get update -y && \
 
 RUN npm install -g yarn npx
 
+ENV CHROME_BIN=/usr/bin/chromium-browser \
+  CHROME_PATH=/usr/lib/chromium/
+
 COPY rootfs /
 WORKDIR /var/www/owncloud
