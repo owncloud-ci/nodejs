@@ -131,8 +131,14 @@ def notification(config):
         'from_secret': 'private_rocketchat',
       },
       'channel': 'builds',
-      },
-    }]
+    },
+    'when': {
+      'status': [
+        'success',
+        'failure',
+      ],
+    },
+  }]
 
   downstream = [{
     'name': 'downstream',
