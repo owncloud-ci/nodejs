@@ -10,7 +10,9 @@ def main(ctx):
   config = {
     'version': None,
     'arch': None,
-    'trigger': [],
+    'trigger': [
+      'owncloud-ci/chromium@master',
+    ],
     'repo': ctx.repo.name
   }
 
