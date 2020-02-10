@@ -142,7 +142,7 @@ def notification(config):
         'from_secret': 'drone_token',
       },
       'server': 'https://drone.owncloud.com',
-      'repositories': config['downstream'],
+      'repositories': config['trigger'],
     },
     'when': {
       'status': [
