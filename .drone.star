@@ -126,7 +126,6 @@ def notification(config):
   steps = [{
     'name': 'notify',
     'image': 'plugins/slack',
-    'failure': 'ignore',
     'settings': {
       'webhook': {
         'from_secret': 'private_rocketchat',
@@ -138,7 +137,6 @@ def notification(config):
   downstream = [{
     'name': 'downstream',
     'image': 'plugins/downstream',
-    'failure': 'ignore',
     'settings': {
       'token': {
         'from_secret': 'drone_token',
