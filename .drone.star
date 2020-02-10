@@ -135,7 +135,7 @@ def notification(config):
       },
     }]
 
-  downstream = {
+  downstream = [{
     'name': 'downstream',
     'image': 'plugins/downstream',
     'failure': 'ignore',
@@ -151,10 +151,10 @@ def notification(config):
         'success',
       ],
     },
-  }
+  }]
 
   if config['trigger']:
-    steps.append(downstream)
+    steps = downstream + steps
 
   return {
     'kind': 'pipeline',
