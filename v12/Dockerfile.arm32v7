@@ -1,4 +1,4 @@
-FROM owncloud/ubuntu:18.04
+FROM owncloud/ubuntu:18.04-arm32v7
 
 LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
   org.label-schema.name="ownCloud CI NodeJS" \
@@ -8,7 +8,7 @@ LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
 VOLUME ["/var/www/owncloud"]
 
 RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-  echo "deb https://deb.nodesource.com/node_11.x bionic main" | tee /etc/apt/sources.list.d/node.list
+  echo "deb https://deb.nodesource.com/node_12.x bionic main" | tee /etc/apt/sources.list.d/node.list
 
 RUN apt-get update -y && \
   apt-get upgrade -y && \
