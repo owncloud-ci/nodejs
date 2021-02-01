@@ -1,13 +1,16 @@
 def main(ctx):
   versions = [
     'latest',
+    '15',
+    '14',
     '12',
-    '11',
-    '10',
+    '10'
   ]
 
   arches = [
     'amd64',
+    'arm32v7',
+    'arm64v8',
   ]
 
   config = {
