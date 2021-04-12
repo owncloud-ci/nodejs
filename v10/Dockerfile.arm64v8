@@ -24,3 +24,5 @@ RUN npm install -g yarn npx --force
 
 COPY rootfs /
 WORKDIR /var/www/owncloud
+
+CMD ["bash"]
