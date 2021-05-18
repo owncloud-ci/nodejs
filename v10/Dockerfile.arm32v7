@@ -11,11 +11,12 @@ LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
 
 VOLUME ["/var/www/owncloud"]
 
-RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-  echo "deb https://deb.nodesource.com/node_10.x bionic main" | tee /etc/apt/sources.list.d/node.list
-
 RUN apt-get update -y && \
-  apt-get install -y nodejs git-core build-essential libpng16-16 && \
+  apt-get install -y git-core build-essential libpng16-16 lsb-release && \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+  echo "deb https://deb.nodesource.com/node_10.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/node.list && \
+  apt-get update -y && \
+  apt-get install -y nodejs && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
