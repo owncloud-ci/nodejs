@@ -17,7 +17,7 @@ ENV RETRY_VERSION="${RETRY_VERSION:-v2.0.0}"
 VOLUME ["/var/www/owncloud"]
 
 RUN apt-get update -y && \
-  apt-get install -y gettext git-core build-essential libpng16-16 lsb-release && \
+  apt-get install -y gettext git-core build-essential libpng16-16 lsb-release firefox && \
   curl -SsL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
   chmod 755 /usr/local/bin/retry && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
