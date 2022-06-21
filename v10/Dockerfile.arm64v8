@@ -18,7 +18,7 @@ VOLUME ["/var/www/owncloud"]
 
 RUN apt-get update -y && \
   apt-get install -y gettext git-core build-essential libfontconfig libpng16-16 lsb-release firefox && \
-  curl -SsL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
+  curl -SsfL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
   chmod 755 /usr/local/bin/retry && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
   echo "deb https://deb.nodesource.com/node_10.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/node.list && \
