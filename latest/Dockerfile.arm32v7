@@ -17,17 +17,17 @@ ENV RETRY_VERSION="${RETRY_VERSION:-v2.0.0}"
 VOLUME ["/var/www/owncloud"]
 
 RUN apt-get update -y && \
-  apt-get install -y gettext git-core build-essential libpng16-16 lsb-release firefox && \
+  apt-get install -y gettext git-core build-essential libfontconfig libpng16-16 lsb-release firefox && \
   curl -SsfL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
   chmod 755 /usr/local/bin/retry && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-  echo "deb https://deb.nodesource.com/node_16.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/node.list && \
+  echo "deb https://deb.nodesource.com/node_18.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/node.list && \
   apt-get update -y && \
   apt-get install -y nodejs && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN npm install -g yarn npx pnpm --force
+RUN npm install --silent -g yarn npx pnpm --force
 
 COPY rootfs /
 WORKDIR /var/www/owncloud
