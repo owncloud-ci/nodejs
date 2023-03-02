@@ -27,7 +27,7 @@ RUN apt-get update -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN npm install -g yarn npx --force
+RUN npm install --silent -g yarn npx pnpm --force
 
 COPY rootfs /
 WORKDIR /var/www/owncloud
