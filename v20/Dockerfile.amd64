@@ -14,7 +14,7 @@ ARG RETRY_VERSION
 # renovate: datasource=github-releases depName=owncloud-ci/retry
 ENV RETRY_VERSION="${RETRY_VERSION:-v2.0.0}"
 # renovate: datasource=npm depName=pnpm
-ENV PNPM_VERSION="${PNPM_VERSION:-8.15.5}"
+ENV PNPM_VERSION="${PNPM_VERSION:-8.15.9}"
 
 VOLUME ["/var/www/owncloud"]
 
