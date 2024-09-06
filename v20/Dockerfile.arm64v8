@@ -1,0 +1,35 @@
+FROM owncloud/ubuntu:20.04-arm64v8@sha256:f2bf53708c8e5393371e106e621e8b458557da2bf7d056a79dc3b3a1ad98cb06
+
+LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
+  org.opencontainers.image.title="ownCloud CI NodeJS" \
+  org.opencontainers.image.vendor="ownCloud GmbH" \
+  org.opencontainers.image.authors="ownCloud GmbH" \
+  org.opencontainers.image.description="ownCloud CI NodeJS" \
+  org.opencontainers.image.documentation="https://github.com/owncloud-ci/nodejs.git" \
+  org.opencontainers.image.url="https://github.com/owncloud-ci/nodejs" \
+  org.opencontainers.image.source="https://github.com/owncloud-ci/nodejs"
+
+ARG RETRY_VERSION
+
+# renovate: datasource=github-releases depName=owncloud-ci/retry
+ENV RETRY_VERSION="${RETRY_VERSION:-v2.0.0}"
+# renovate: datasource=npm depName=pnpm
+ENV PNPM_VERSION="${PNPM_VERSION:-8.15.5}"
+
+VOLUME ["/var/www/owncloud"]
+
+RUN apt-get update -y && \
+  apt-get install -y gettext git-core build-essential libfontconfig libpng16-16 lsb-release firefox && \
+  curl -SsfL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
+  chmod 755 /usr/local/bin/retry && \
+  curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+  echo "deb https://deb.nodesource.com/node_20.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/node.list && \
+  apt-get update -y && \
+  apt-get install -y nodejs && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN npm install --silent -g yarn npx "pnpm@$PNPM_VERSION" --force
+
+COPY rootfs /
+WORKDIR /var/www/owncloud
