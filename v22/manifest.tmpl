@@ -1,0 +1,11 @@
+image: owncloudci/nodejs:22
+manifests:
+  - image: owncloudci/nodejs:22-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: owncloudci/nodejs:22-arm64v8
+    platform:
+      architecture: arm64
+      variant: v8
+      os: linux
