@@ -1,4 +1,4 @@
-FROM owncloud/ubuntu:22.04-amd64@sha256:4c7cd5f9c40b28cd12ce780d7b34cb18ad4a6c7039bbb764d23edc8498ad2e6b
+FROM owncloud/ubuntu:22.04-arm64v8@sha256:21fe74802e2a3ac9d73ba854c6551dbddeb6304c69b89150ae215b2ea7566930
 
 LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
   org.opencontainers.image.title="ownCloud CI NodeJS" \
@@ -19,15 +19,13 @@ ENV PNPM_VERSION="${PNPM_VERSION:-10.20.0}"
 VOLUME ["/var/www/owncloud"]
 
 RUN apt-get update -y && \
-  apt-get install -y gettext git-core build-essential libfontconfig libpng16-16 lsb-release firefox && \
+  apt-get install -y gettext file git-core build-essential libfontconfig libpng16-16 lsb-release firefox && \
   curl -SsfL -o /usr/local/bin/retry "https://github.com/owncloud-ci/retry/releases/download/v${RETRY_VERSION##v}/retry" && \
   chmod 755 /usr/local/bin/retry && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
   curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
   apt-get update -y && \
   apt-get install -y nodejs && \
-  wget -q -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-  apt install -y /tmp/google-chrome-stable_current_amd64.deb && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
