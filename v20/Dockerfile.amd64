@@ -25,7 +25,7 @@ RUN apt-get update -y && \
   curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
   curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
   apt-get update -y && \
-  apt-get install -y nodejs=20.17.0-1nodesource1 && \
+  apt-get install -y nodejs=20.19.0-1nodesource1 && \
   wget -q -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
   apt install -y /tmp/google-chrome-stable_current_amd64.deb && \
   apt-get clean && \
