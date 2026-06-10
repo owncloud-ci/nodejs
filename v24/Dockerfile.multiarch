@@ -1,8 +1,4 @@
-FROM owncloud/ubuntu:22.04-amd64@sha256:4c7cd5f9c40b28cd12ce780d7b34cb18ad4a6c7039bbb764d23edc8498ad2e6b AS base-amd64
-FROM owncloud/ubuntu:22.04-arm64v8@sha256:21fe74802e2a3ac9d73ba854c6551dbddeb6304c69b89150ae215b2ea7566930 AS base-arm64
-
-ARG TARGETARCH
-FROM base-${TARGETARCH}
+FROM owncloud/ubuntu:22.04
 
 LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
   org.opencontainers.image.title="ownCloud CI NodeJS" \
