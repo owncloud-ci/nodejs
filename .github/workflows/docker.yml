@@ -17,7 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - latest
           - "24"
           - "22"
           - "20"
@@ -41,13 +40,8 @@ jobs:
       - name: Compute build context and tag
         id: meta
         run: |
-          if [ "${{ matrix.version }}" = "latest" ]; then
-            echo "context=latest" >> "$GITHUB_OUTPUT"
-            echo "tag=owncloudci/nodejs:latest" >> "$GITHUB_OUTPUT"
-          else
-            echo "context=v${{ matrix.version }}" >> "$GITHUB_OUTPUT"
-            echo "tag=owncloudci/nodejs:${{ matrix.version }}" >> "$GITHUB_OUTPUT"
-          fi
+          echo "context=v${{ matrix.version }}" >> "$GITHUB_OUTPUT"
+          echo "tag=owncloudci/nodejs:${{ matrix.version }}" >> "$GITHUB_OUTPUT"
 
       - name: Build and push
         uses: docker/build-push-action@f9f3042f7e2789586610d6e8b85c8f03e5195baf # v7.2.0
