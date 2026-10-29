@@ -1,4 +1,4 @@
-FROM owncloud/ubuntu:22.04@sha256:872b791ab2d46d2ea6c8f3f52889fdd6846ff91c560379ec4ebd2985f56db9cc
+FROM owncloud/ubuntu:24.04@sha256:85842f4c93c3d0e14f4f27c72940518894cabd799d41c19ec5fb0707ae05cc13
 
 LABEL maintainer="ownCloud GmbH <devops@owncloud.com>" \
   org.opencontainers.image.title="ownCloud CI NodeJS" \
